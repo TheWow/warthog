@@ -24,6 +24,10 @@ import { BaseWhereInput, JsonObject, PaginationArgs, DateOnlyString, DateTimeStr
 import { StringEnum } from "../src/modules/user/user.model";
 
 // @ts-ignore
+import { EventParam } from "../src/modules/user/user.model";
+// @ts-ignore
+import { EventObject } from "../src/modules/user/user.model";
+// @ts-ignore
 import { User } from "../src/modules/user/user.model";
 
 export enum UserOrderByEnum {
@@ -784,8 +788,11 @@ export class UserCreateInput {
   @TypeGraphQLField(() => GraphQLJSONObject, { nullable: true })
   jsonFieldNoFilter?: JsonObject;
 
-  @TypeGraphQLField({ nullable: true })
-  stringField?: string;
+  @TypeGraphQLField(() => EventObject, { nullable: true })
+  typedJsonField?: EventObject;
+
+  @TypeGraphQLField()
+  stringField!: string;
 
   @TypeGraphQLField({ nullable: true })
   noFilterField?: string;
@@ -909,6 +916,9 @@ export class UserUpdateInput {
 
   @TypeGraphQLField(() => GraphQLJSONObject, { nullable: true })
   jsonFieldNoFilter?: JsonObject;
+
+  @TypeGraphQLField(() => EventObject, { nullable: true })
+  typedJsonField?: EventObject;
 
   @TypeGraphQLField({ nullable: true })
   stringField?: string;
